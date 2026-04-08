@@ -1,0 +1,68 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'dashboard' %}">
+            {% trans "شؤون الموظفين" %}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">
+                        {% trans "لوحة القيادة" %}
+                    </a>
+                </li>
+                {% if user.role == 'owner' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard_owner' %}">
+                        {% trans "لوحة مالك الشركة" %}
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% trans "الموظفون" %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'employee_list' %}">{% trans "قائمة الموظفين" %}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'employee_create' %}">{% trans "إضافة موظف جديد" %}</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ user.first_name_ar|default:user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="{% url 'change_language' 'ar' %}">{% trans "العربية" %}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'change_language' 'en' %}">{% trans "English" %}</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item text-danger">
+                                    {% trans "تسجيل الخروج" %}
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">
+                        {% trans "تسجيل الدخول" %}
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
