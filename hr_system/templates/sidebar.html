@@ -1,7 +1,42 @@
-<div class="list-group list-group-flush">
-    <a href="#" class="list-group-item list-group-item-action bg-light">Employees</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Departments</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Attendance</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Payroll</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Settings</a>
+<div class="sidebar-footer">
+    <h5 class="px-3">القائمة</h5>
+    <hr>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>لوحة التحكم</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'employees_list' %}">
+                <i class="fas fa-users"></i>
+                <span>الموظفين</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'companies_list' %}">
+                <i class="fas fa-building"></i>
+                <span>الشركات</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'salaries_list' %}">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>الرواتب</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'warnings_list' %}">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>الإنذارات</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'documents_list' %}">
+                <i class="fas fa-file-alt"></i>
+                <span>الوثائق</span>
+            </a>
+        </li>
+    </ul>
 </div>
