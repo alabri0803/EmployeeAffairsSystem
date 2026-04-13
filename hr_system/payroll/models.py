@@ -8,8 +8,8 @@ class Salary(models.Model):
     employee_contribution = models.FloatField(default=0.00)
     company_contribution = models.FloatField(default=0.14)
 
-    def total_deductions(self):
+    def employee_deductions(self):
         return self.basic_salary * self.employee_contribution
 
-    def company_share(self):
+    def company_payment(self):
         return self.basic_salary * self.company_contribution
